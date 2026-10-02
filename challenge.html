@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PromptWars Challenge</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1020;
+            color: white;
+            min-height: 100vh;
+        }
+
+        nav {
+            padding: 20px 8%;
+            background: #111831;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 50px auto;
+            padding: 20px;
+        }
+
+        .title {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .title h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .title span {
+            color: #6c63ff;
+        }
+
+        .challenge {
+            background: #151d38;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+        }
+
+        .challenge h2 {
+            margin-bottom: 15px;
+        }
+
+        .problem {
+            background: #222a48;
+            padding: 20px;
+            border-radius: 10px;
+            line-height: 1.6;
+            margin-top: 15px;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 180px;
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            border: 1px solid #394365;
+            background: #0b1020;
+            color: white;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            background: #6c63ff;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+
+        #result {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background: #222a48;
+            border-radius: 12px;
+        }
+
+        .score {
+            font-size: 40px;
+            font-weight: bold;
+            color: #6c63ff;
+            margin: 15px 0;
+        }
+
+        .tip {
+            color: #c8cce0;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+
+<nav>
+    <a href="index.html">⚔️ PromptWars</a>
+</nav>
+
+<div class="container">
+
+    <div class="title">
+        <h1>⚔️ Prompt<span>Wars</span></h1>
+        <p>Challenge yourself. Build the best prompt.</p>
+    </div>
+
+    <div class="challenge">
+
+        <h2>🔥 Challenge #1</h2>
+
+        <div class="problem">
+            <strong>Your Mission:</strong><br><br>
+
+            You are helping a college student who is nervous
+            about speaking English in front of a class.
+
+            Create an AI prompt that asks an AI assistant to
+            generate a simple 7-day plan to improve the student's
+            English speaking confidence.
+        </div>
+
+        <textarea
+            id="prompt"
+            placeholder="Write your best AI prompt here...">
+        </textarea>
+
+        <button onclick="submitPrompt()">
+            Submit Prompt ⚔️
+        </button>
+
+        <div id="result">
+
+            <h2>🏆 Your Result</h2>
+
+            <div class="score" id="score">
+                0/100
+            </div>
+
+            <p class="tip" id="feedback"></p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function submitPrompt() {
+
+    const prompt = document.getElementById("prompt").value.trim();
+
+    if (prompt === "") {
+        alert("Please write a prompt first!");
+        return;
+    }
+
+    let score = 50;
+
+    if (prompt.length > 80) {
+        score += 10;
+    }
+
+    if (prompt.toLowerCase().includes("7-day") ||
+        prompt.toLowerCase().includes("7 day")) {
+        score += 10;
+    }
+
+    if (prompt.toLowerCase().includes("english")) {
+        score += 10;
+    }
+
+    if (prompt.toLowerCase().includes("speaking")) {
+        score += 10;
+    }
+
+    if (prompt.toLowerCase().includes("confidence")) {
+        score += 10;
+    }
+
+    if (score > 100) {
+        score = 100;
+    }
+
+    document.getElementById("score").innerText =
+        score + "/100";
+
+    document.getElementById("feedback").innerText =
+        "Good attempt! Your prompt was evaluated using basic PromptWars criteria. In the next version, we will connect an AI evaluator that can analyze your prompt more intelligently.";
+
+    document.getElementById("result").style.display = "block";
+
+    window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+</script>
+
+</body>
+</html>
